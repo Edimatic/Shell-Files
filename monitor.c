@@ -47,7 +47,7 @@ char *asset_path(update_p *update, char *direct_str, char *order)
 
 	if (!direct_str)
 		return (NULL);
-	if ((_strlen_(order) > 2) && begin_on(order, "./"))
+	if ((strlen(order) > 2) && begin_on(order, "./"))
 	{
 		if (mult_cmd(update, order))
 			return (order);/* The command is already a full lane */
@@ -58,11 +58,11 @@ char *asset_path(update_p *update, char *direct_str, char *order)
 		{
 			lane = dupli_chars(direct_str, curr_pos, m);
 			if (!*lane)
-				_strcat_(lane, order);/* Append the command to an empty lane*/
+				strcat(lane, order);/* Append the command to an empty lane*/
 			else
 			{
-				_strcat_(lane, "/");/* Append a lane separator */
-				_strcat_(lane, order);/* Append a lane separator */
+				strcat(lane, "/");/* Append a lane separator */
+				strcat(lane, order);/* Append a lane separator */
 			}
 			if (mult_cmd(update, lane))
 				return lane;/* The full lane is an executable command */

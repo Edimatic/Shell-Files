@@ -67,7 +67,7 @@ int asset_builtin(update_p *update)
 	};
 
 	for (read_status = 0; builtinsbt[read_status].dash; read_status++)
-		if (_strcmp_(update->argv[0], builtinsbt[read_status].dash) == 0)
+		if (strcmp(update->argv[0], builtinsbt[read_status].dash) == 0)
 		{
 			update->check_score++;
 			builtin_pro = builtinsbt[read_status].role(update);
@@ -147,7 +147,7 @@ void furk_cmd(update_p *update)
 			discharge_update(update, 1);
 			if (errno == EACCES)
 				exit(126);
-			exit(1);
+			exit(-2);
 		}
 		/* TODO: PUT ERROR FUNCTION */
 	}

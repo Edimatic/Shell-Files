@@ -13,9 +13,9 @@ char *get_chron_doc(update_p *update)
 	if (!bufa)
 		return (NULL);
 	bufa[0] = 0;
-	_strcpy_(bufa, direct);
-	_strcat_(bufa, "/");
-	_strcat_(bufa, HIST_FILE);/*Concatenate home dir path with history file name*/
+	strcpy(bufa, direct);
+	strcat(bufa, "/");
+	strcat(bufa, HIST_FILE);/*Concatenate home dir path with history file name*/
 	return bufa;
 }
 

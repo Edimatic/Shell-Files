@@ -72,9 +72,9 @@ int proset_envt(update_p *update, char *varia, char *va)
 	bufa = malloc(_strlen_(varia) + _strlen_(va) + 2);
 	if (!bufa)
 		return (1);
-	_strcpy_(bufa, varia);/* Copy variable name to buffer */
-	_strcat_(bufa, "=");/* Append '=' */
-	_strcat_(bufa, va);/* Append value */
+	strcpy(bufa, varia);/* Copy variable name to buffer */
+	strcat(bufa, "=");/* Append '=' */
+	strcat(bufa, va);/* Append value */
 	node = update->env;
 
 /* Check if variable exists; if yes, update its value; if not, add new entry */
@@ -83,7 +83,7 @@ int proset_envt(update_p *update, char *varia, char *va)
 		pik = begin_on(node->rop, varia);
 		if (pik && *pik == '=')
 		{
-			free(node->rop);
+			
 			node->rop = bufa;
 			update->pro_envt = 1;
 			return (0);
@@ -91,7 +91,7 @@ int proset_envt(update_p *update, char *varia, char *va)
 		node = node->after;
 	}
 	attach_node_end(&(update->env), bufa, 0);/* Add new entry to linked list */
-	free(bufa);
+	
 	update->pro_envt = 1;
 	return 0;
 }

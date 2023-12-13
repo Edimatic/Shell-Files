@@ -28,7 +28,7 @@ void make_update(update_p *update, char **him)
 			update->argv = malloc(sizeof(char *) * 2);
 	if (update->argv)
 			{
-	update->argv[0] = _strdup_(update->logic);/* Copy argument to argv */
+	update->argv[0] = strdup(update->logic);/* Copy argument to argv */
 				update->argv[1] = NULL;
 			}
 		}
