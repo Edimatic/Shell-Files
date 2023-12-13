@@ -120,7 +120,7 @@ int reassign_vars(update_p *update)
 
 int reassign_strn(char **mature, char *latest)
 {
-	free(*mature);
+	/*free(*mature); */
 	*mature = latest;
 	return 1;
 }
