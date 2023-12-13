@@ -147,7 +147,7 @@ void furk_cmd(update_p *update)
 			discharge_update(update, 1);
 			if (errno == EACCES)
 				exit(126);
-			exit(-2);
+		
 		}
 		/* TODO: PUT ERROR FUNCTION */
 	}

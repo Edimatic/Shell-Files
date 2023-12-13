@@ -15,7 +15,7 @@ int pro_free(void **pot)
 {
 	if (pot && *pot)
 	{
-		free(*pot);/* Free the memory pointed to by 'ptr' */
+		/*free(*pot); Free the memory pointed to by 'ptr' */
 		*pot = NULL;/* Set 'ptr' to NULL to prevent further use */
 		return (1);/* Return 1 to indicate successful memory freeing */
 	}
