@@ -4,3 +4,153 @@
 !README.md
 git-push.sh*
 cv
+
+#include "eddi.h"
+
+/**
+ * print_aliases - Print the list of aliases.
+ * @aliases: The array of aliases.
+ * @alias_count: The number of aliases.
+ */
+void print_aliases(Alias *aliases, int alias_count)
+{
+		int i;
+
+	for (i = 0; i < alias_count; i++)
+	{
+	write(1, aliases[i].name, custom_strlen(aliases[i].name));
+	write(1, "=", 1);
+	write(1, aliases[i].value, custom_strlen(aliases[i].value));
+	write(1, "\n", 1);
+	}
+}
+
+/**
+ * find_alias - Find the value of an alias.
+ * @aliases: The array of aliases.
+ * @alias_count: The number of aliases.
+ * @name: The name of the alias to find.
+ *
+ * Return: The value of the alias if found, otherwise NULL.
+ */
+Alias *find_alias(Alias *aliases, int alias_count, char *name)
+{
+	int i;
+
+	for (i = 0; i < alias_count; i++)
+	{
+	if (custom_strcmp(aliases[i].name, name) == 0)
+	{
+		return (&aliases[i]);
+	}
+	}
+		return (NULL);
+}
+
+/**
+ * set_alias - Set or update an alias.
+ * @aliases: The array of aliases.
+ * @alias_count: The number of aliases.
+ * @name: The name of the alias.
+ * @value: The value of the alias.
+ */
+void set_alias(Alias *aliases, int *alias_count, char *name, char *value)
+{
+	int i;
+
+	for (i = 0; i < *alias_count; i++)
+	{
+	if (custom_strcmp(aliases[i].name, name) == 0)
+	{
+/* Allocate memory for the new value */
+	char *new_value = custom_malloc(custom_strlen(value) + 1);
+
+	if (new_value == NULL)
+{
+	custom_fprintf_stderr("Failed to allocate memory for alias value.\n");
+return; /* Avoid updating the alias if memory allocation fails*/
+	}
+	/* Free the old value only if the allocation is successful */
+		free(aliases[i].value);
+		aliases[i].value = new_value;
+return;
+	}
+	}
+
+/* If the alias doesn't exist, add a new one */
+	if (*alias_count < MAX_ALIASES)
+{
+	aliases[*alias_count].name = custom_strdup(name);
+	aliases[*alias_count].value = custom_strdup(value);
+	(*alias_count)++;
+	}
+else
+	{
+	custom_fprintf_stderr("Maximum number of aliases reached. \n");
+	}
+}
+
+/**
+ * execute_alias - Execute the alias command
+ * @arguments: The arguments of the alias command.
+ * @aliases: The array of aliases.
+ * @alias_count: The number of aliases.
+ */
+void execute_alias(char *arguments, Alias *aliases, int *alias_count)
+{
+		char *token = strtok(arguments, " \t\n");
+
+	if (token == NULL)
+	{
+	print_aliases(aliases, *alias_count);
+	}
+	else
+	{
+		while (token != NULL)
+	{
+		char *alias_name = strtok(token, "=");
+		char *alias_value = strtok(NULL, "=");
+
+	if (alias_value == NULL)
+	{
+		Alias *alias = find_alias(aliases, *alias_count, alias_name);
+	if (alias != NULL)
+	{
+		write(1, alias->name, custom_strlen(alias->name));
+		write(1, "=", 1);
+		write(1, alias->value, custom_strlen(alias->value));
+		write(1, "\n", 1);
+	}
+	else
+	{
+		write(2, "Alias not found: ", 17);
+		write(2, alias_name, custom_strlen(alias_name));
+		write(2, "\n", 1);
+		}
+	}
+	else
+		{
+		set_alias(aliases, alias_count, alias_name, alias_value);
+	}
+		token = strtok(NULL, " \t\n");
+		}
+	}
+}
+/**
+ * custom_strdup - Custom implementation of strdup function.
+ * @str: The string to duplicate.
+ *
+ * Return: A pointer to the newly allocated string, or NULL if it fails.
+ */
+char *custom_strdup(const char *str)
+{
+		size_t len = custom_strlen(str) + 1;
+		char *new_str = custom_malloc(len);
+	if (new_str == NULL)
+{
+	perror("malloc");
+	return (NULL);
+	}
+	custom_strcpy(new_str, str);
+	return (new_str);
+}
