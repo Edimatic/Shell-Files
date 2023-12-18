@@ -32,7 +32,7 @@ int _pro_unsetenvt(update_p *update, char *varia)
 	char *pik;
 
 	if (!node || !varia)
-		return 0; 
+		return (0); 
 
 	while (node)
 	{
@@ -72,9 +72,9 @@ int proset_envt(update_p *update, char *varia, char *va)
 	bufa = malloc(_strlen_(varia) + _strlen_(va) + 2);
 	if (!bufa)
 		return (1);
-	strcpy(bufa, varia);/* Copy variable name to buffer */
-	strcat(bufa, "=");/* Append '=' */
-	strcat(bufa, va);/* Append value */
+	_strcpy_(bufa, varia);/* Copy variable name to buffer */
+	_strcat_(bufa, "=");/* Append '=' */
+	_strcat_(bufa, va);/* Append value */
 	node = update->env;
 
 /* Check if variable exists; if yes, update its value; if not, add new entry */
