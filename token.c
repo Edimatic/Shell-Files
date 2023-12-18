@@ -81,7 +81,7 @@ char **strto_k(char *ztg, char d_ter)
 		if (!words[j])
 		{
 			for (kim = 0; kim < j; kim++)/*Free previously allocated*/
-				/*free(words[kim]); */
+			free(words[kim]);
 			free(words);
 			return (NULL);
 		}

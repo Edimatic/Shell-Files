@@ -135,16 +135,16 @@ int wax_get_line(update_p *update, char **pot, size_t *distance)
 	if (r == -1 || (r == 0 && len == 0))
 		return (-1);
 
-	ch = strchr(buf + i, '\n');
+	ch = _strchr_(buf + i, '\n');
 	k = ch ? 1 + (unsigned int)(ch - buf) : len;
 	old_opp = _allocate(pal, os, os ? os + k : k + 1);
 	if (!old_opp) /* MALLOC FAILURE! */
 		return (pal ? free(pal), -1 : -1);
 
 	if (os)
-		strncat(old_opp, buf + i, k - i);/* Concatenate new data */
+		_strncat_(old_opp, buf + i, k - i);/* Concatenate new data */
 	else
-		strncpy(old_opp, buf + i, k - i + 1);
+		_strncpy_(old_opp, buf + i, k - i + 1);
 
 	os += k - i;
 	i = k;

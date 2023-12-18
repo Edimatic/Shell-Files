@@ -47,7 +47,7 @@ char *asset_path(update_p *update, char *direct_str, char *order)
 
 	if (!direct_str)
 		return (NULL);
-	if ((strlen(order) > 2) && begin_on(order, "./"))
+	if ((_strlen_(order) > 2) && begin_on(order, "./"))
 	{
 		if (mult_cmd(update, order))
 			return (order);/* The command is already a full lane */

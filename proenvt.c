@@ -83,7 +83,7 @@ int proset_envt(update_p *update, char *varia, char *va)
 		pik = begin_on(node->rop, varia);
 		if (pik && *pik == '=')
 		{
-			
+			free(node->rop);
 			node->rop = bufa;
 			update->pro_envt = 1;
 			return (0);
@@ -91,7 +91,7 @@ int proset_envt(update_p *update, char *varia, char *va)
 		node = node->after;
 	}
 	attach_node_end(&(update->env), bufa, 0);/* Add new entry to linked list */
-	
+	free(bufa);
 	update->pro_envt = 1;
 	return 0;
 }

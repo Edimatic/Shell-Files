@@ -25,7 +25,7 @@ int main(int argct, char **argvt)
 		if (fd == -1)
 		{
 			if (errno == EACCES)
-				/*exit(126);// Exit with code 126 on permission denied*/
+				exit(126);/* Exit with code 126 on permission denied*/
 			if (errno == ENOENT)
 			{
 				_funcputs(argvt[0]);
@@ -33,7 +33,7 @@ int main(int argct, char **argvt)
 				_funcputs(argvt[1]);
 				_funcputchar('\n');/* Print an error message */
 				_funcputchar(BUF_FLUSH);
-				/*exit(127) Exit with code 127 if file not found */
+				exit(127);/* Exit with code 127 if file not found */
 			}
 			return (EXIT_FAILURE);/* Return failure code for other errors */
 		}
