@@ -41,7 +41,7 @@ void *_allocate(void *poin, unsigned int mature_s, unsigned int latest_s)
 	mature_s = mature_s < latest_s ? mature_s : latest_s;
 	while (mature_s--)
 		pt[mature_s] = ((char *)poin)[mature_s];
-	free(poin);
+	/*free(poin); */
 	return (pt);
 }
 

@@ -82,7 +82,7 @@ char **strto_k(char *ztg, char d_ter)
 		{
 			for (kim = 0; kim < j; kim++)/*Free previously allocated*/
 				/*free(words[kim]); */
-			/*free(words); */
+			free(words);
 			return (NULL);
 		}
 		for (min = 0; min < kim; min++)/*Copy the word into the array*/

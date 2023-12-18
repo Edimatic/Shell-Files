@@ -26,7 +26,7 @@ int _strcmp_(char *org, char *mrk)
 	if (*org == *mrk)/* Check if both strings ended at the same time (equal) */
 		return (0);
 	else
-		return *org < *mrk ? -1 : 1;/*Return neg if org < mrk, posiif org > mrk*/
+		return (*org < *mrk ? -1 : 1);/*Return neg if org < mrk, posiif org > mrk*/
 }
 
 
@@ -53,5 +53,5 @@ char *_strcat_(char *station, char *origin)
 
 	*station = *origin;/* Append a null-terminator to the concatenated string */
 
-	return eddy;/* Return the pointer to the station buffer */
+	return (eddy);/* Return the pointer to the station buffer */
 }

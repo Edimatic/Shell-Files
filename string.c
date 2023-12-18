@@ -34,7 +34,7 @@ char *_strdup_(const char *strn)
 	/* Allocate memory for the duplicated string */
 	ret = malloc(sizeof(char) * (length + 1));
 	if (!ret)
-		return NULL;
+		return (NULL);
 
 /* Copy characters from the original string to the duplicated string */
 	for (length++; length--;)
@@ -71,6 +71,6 @@ int _putchar(char cht)
 	}
 	if (cht != BUF_FLUSH)
 		bufa[eddy++] = cht;
-	return 1;
+	return (1);
 }
 

@@ -42,7 +42,7 @@ char **register_via_strn(regis_t *boss)
 			for (lp = 0; lp < q; lp++)
 				free(turs[lp]);
 			free(turs);
-			return NULL;
+			return (NULL);
 		}
 
 		strng = _strcpy_(strng, node->rop);
@@ -74,7 +74,7 @@ size_t output_register(const regis_t *md)
 		md = md->after;
 		w++;
 	}
-	return w;
+	return (w);
 }
 
 
@@ -89,7 +89,7 @@ regis_t *node_begin_on(regis_t *apex, char *mix, char cht)
 			return (apex);
 		apex = apex->after;
 	}
-	return NULL;
+	return (NULL);
 }
 
 
@@ -104,6 +104,6 @@ ssize_t bring_node_roll(regis_t *front, regis_t *apex)
 		front = front->after;
 		g++;
 	}
-	return -1;/* Node not found in the list */
+	return (-1);/* Node not found in the list */
 }
 
