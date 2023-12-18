@@ -1,3 +1,4 @@
+
 #include "eddi.h"
 
  
@@ -13,9 +14,9 @@ char *get_chron_doc(update_p *update)
 	if (!bufa)
 		return (NULL);
 	bufa[0] = 0;
-	strcpy(bufa, direct);
-	strcat(bufa, "/");
-	strcat(bufa, HIST_FILE);/*Concatenate home dir path with history file name*/
+	_strcpy_(bufa, direct);
+	_strcat_(bufa, "/");
+	_strcat_(bufa, HIST_FILE);/*Concatenate home dir path with history file name*/
 	return bufa;
 }
 
@@ -74,7 +75,7 @@ int present_chron(update_p *update)
 	if (!fstat(fildes, &st))
 		fsize = st.st_size;
 	if (fsize < 2)
-		return 0;
+		return (0);
 	bufa = malloc(sizeof(char) * (fsize + 1));/*Allocate bufa for reading*/
 	if (!bufa)
 		return 0;
@@ -131,5 +132,5 @@ int renums_chron(update_p *update)
 		node->figure = gh++;
 		node = node->after;
 	}
-	return update->pass_note = gh;
+	return (update->pass_note = gh);
 }

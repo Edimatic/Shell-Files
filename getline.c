@@ -164,8 +164,8 @@ int wax_get_line(update_p *update, char **pot, size_t *distance)
  */
 void sigl_Handler(__attribute__((unused))int sig_num)
 {
-	printf("\n");/* Print newline */
-	printf("$ ");/* Print prompt */
+	_puts_("\n");/* Print newline */
+	_puts_("$ ");/* Print prompt */
 	_putchar(BUF_FLUSH);
 }
 

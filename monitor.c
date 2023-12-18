@@ -58,11 +58,11 @@ char *asset_path(update_p *update, char *direct_str, char *order)
 		{
 			lane = dupli_chars(direct_str, curr_pos, m);
 			if (!*lane)
-				strcat(lane, order);/* Append the command to an empty lane*/
+				_strcat_(lane, order);/* Append the command to an empty lane*/
 			else
 			{
-				strcat(lane, "/");/* Append a lane separator */
-				strcat(lane, order);/* Append a lane separator */
+				_strcat_(lane, "/");/* Append a lane separator */
+				_strcat_(lane, order);/* Append a lane separator */
 			}
 			if (mult_cmd(update, lane))
 				return lane;/* The full lane is an executable command */
@@ -72,6 +72,6 @@ char *asset_path(update_p *update, char *direct_str, char *order)
 		}
 		m++;
 	}
-	return NULL;/* The command was not found in the DIRECTION */
+	return (NULL);/* The command was not found in the DIRECTION */
 }
 
